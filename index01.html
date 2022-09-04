@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <h3 class="title">Novidades estão chagando...</h3>
+            <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non natus maiores in ea.
+                Laudantium, facere exercitationem. Culpa voluptate tempore consequatur.</p>
+            <div class="counter">
+                <div class="box">
+                    <h3 id="dias">00</h3>
+                    <p>Dias</p>
+                </div>
+                <div class="box">
+                    <h3 id="horas">00</h3>
+                    <p>Horas</p>
+                </div>
+                <div class="box">
+                    <h3 id="minutos">00</h3>
+                    <p>Minutos</p>
+                </div>
+                <div class="box">
+                    <h3 id="segundos">00</h3>
+                    <p>Segundos</p>
+                </div>
+            </div>
+            <div class="abc">
+                <a href="#" class="btn">Me deixe atualizado</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        let counteDate = new Date('oct 22, 2022 00:00:00').getTime();
+
+        function countDown(){
+
+            let now = new Date().getTime();
+            gap = countDate - now;
+
+            let segundos = 1000;
+            let minutos = segundos * 60;
+            let horas = minutos * 60;
+            let dias = horas * 24;
+
+
+            let d = Math.floor(gap / (dias));
+            let h = Math.floor((gap % (dias)) / (horas));
+            let m = Math.floor((gap % (horas)) / (minutos));
+            let s = Math.floor((gap % (minutos)) / (segundos));
+
+            document.getElementByid('dias').innerText = d;
+            document.getElementByid('horas').innerText = h;
+            document.getElementByid('minutos').innerText = m;
+            document.getElementByid('segundos').innerText = s;
+            
+        }
+
+        setInterval(function(){
+            countDown();
+            
+        },1000)
+    </script>
+</body>
+
+</html>
