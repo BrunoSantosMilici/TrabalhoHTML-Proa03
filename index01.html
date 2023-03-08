@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="css/style.css">
+    <title>Página de anúncio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -17,19 +17,19 @@
                 Laudantium, facere exercitationem. Culpa voluptate tempore consequatur.</p>
             <div class="counter">
                 <div class="box">
-                    <h3 id="dias">00</h3>
+                    <h3 id="days">00</h3>
                     <p>Dias</p>
                 </div>
                 <div class="box">
-                    <h3 id="horas">00</h3>
+                    <h3 id="hours">00</h3>
                     <p>Horas</p>
                 </div>
                 <div class="box">
-                    <h3 id="minutos">00</h3>
+                    <h3 id="minutes">00</h3>
                     <p>Minutos</p>
                 </div>
                 <div class="box">
-                    <h3 id="segundos">00</h3>
+                    <h3 id="seconds">00</h3>
                     <p>Segundos</p>
                 </div>
             </div>
@@ -42,35 +42,32 @@
     </div>
 
     <script>
-        let counteDate = new Date('oct 22, 2022 00:00:00').getTime();
+        const days = document.getElementById('days');
+const hours = document.getElementById('hours');
+const minutes = document.getElementById('minutes');
+const seconds = document.getElementById('seconds');
 
-        function countDown(){
+const currentYear = new Date().getFullYear();
 
-            let now = new Date().getTime();
-            gap = countDate - now;
+const newYearTime = new Date(`January 01 ${currentYear + 1} 00:00:00`);
 
-            let segundos = 1000;
-            let minutos = segundos * 60;
-            let horas = minutos * 60;
-            let dias = horas * 24;
+// Update countdown time
+function updateCountdown() {
+	const currentTime = new Date();
+	const diff = newYearTime - currentTime;
 
+	const d = Math.floor(diff / 1000 / 60 / 60 / 24);
+	const h = Math.floor(diff / 1000 / 60 / 60) % 24;
+	const m = Math.floor(diff / 1000 / 60) % 60;
+	const s = Math.floor(diff / 1000) % 60;
 
-            let d = Math.floor(gap / (dias));
-            let h = Math.floor((gap % (dias)) / (horas));
-            let m = Math.floor((gap % (horas)) / (minutos));
-            let s = Math.floor((gap % (minutos)) / (segundos));
+	days.innerHTML = d;
+	hours.innerHTML = h < 10 ? '0' + h : h;
+	minutes.innerHTML = m < 10 ? '0' + m : m;
+	seconds.innerHTML = s < 10 ? '0' + s : s;
+}
 
-            document.getElementByid('dias').innerText = d;
-            document.getElementByid('horas').innerText = h;
-            document.getElementByid('minutos').innerText = m;
-            document.getElementByid('segundos').innerText = s;
-            
-        }
-
-        setInterval(function(){
-            countDown();
-            
-        },1000)
+setInterval(updateCountdown, 1000);
     </script>
 </body>
 
